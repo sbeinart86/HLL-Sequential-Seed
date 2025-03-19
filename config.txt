@@ -17,9 +17,5 @@ RCON_URLPATH=http://69.48.207.90:8010/api/get_public_info
 
 SERVER_NAMESOUL="SOULSNIPER'S SOF | NEW"
 SERVER_NAMEHOT="Hot Dog 7"
-SEVER_NAMEESPT="Garris"
+SEVER_NAMEESPT="Garrisons &"
 SERVER_NAMEPATH="Pathfinders | Chicago"
-
-
-
-
