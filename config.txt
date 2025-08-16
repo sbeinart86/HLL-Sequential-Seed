@@ -10,7 +10,7 @@ SEEDED_ESPT=65
 SEEDED_PATH=75
 
 RCON_URLSOUL=https://sof-casual-stats.crcon.cc/api/get_public_info
-RCON_URLHOT=https://op-stats.crcon.cc/api/get_public_info
+RCON_URLHOT=https://op2-stats.hlladmin.com/api/get_public_info
 RCON_URLESPT=https://gw-stats.hlladmin.com/api/get_public_info
 RCON_URLPATH=http://69.48.207.90:8010/api/get_public_info
 
