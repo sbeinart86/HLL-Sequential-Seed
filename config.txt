@@ -4,18 +4,15 @@ JQ_URL=https://github.com/stedolan/jq/releases/latest/download/jq-win64.exe
 JQ_INSTALL_PATH=%USERPROFILE%\hll-seq-seed\jq
 JQ_PATH=%USERPROFILE%\hll-seq-seed\jq\jq.exe
 
-SEEDED_SOUL=50
 SEEDED_HOT=60
 SEEDED_ESPT=65
 SEEDED_PATH=75
 
-RCON_URLSOUL=https://sof-casual-stats.crcon.cc/api/get_public_info
 RCON_URLHOT=https://op2-stats.hlladmin.com/api/get_public_info
 RCON_URLESPT=https://gw-stats.hlladmin.com/api/get_public_info
 RCON_URLPATH=http://69.48.207.90:8010/api/get_public_info
 
 
-SERVER_NAMESOUL="SOULSNIPER'S SOF | NEW"
 SERVER_NAMEHOT="Hot Dog 7"
 SEVER_NAMEESPT="Garrisons & Whiskey"
 SERVER_NAMEPATH="Pathfinders | Chicago"
