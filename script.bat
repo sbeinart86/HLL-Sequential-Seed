@@ -85,15 +85,15 @@ for /f "usebackq delims=," %%i in (`curl -s -X GET %RCON_URLESPT% ^| %JQ_PATH% -
 IF NOT DEFINED axiscountESPT goto ServerDownESPT
 IF DEFINED axiscountESPT goto ServerUpESPT
 :ServerDownESPT
-echo Server is Down. Skipping to Outpost.
-goto HOTSeed
+echo Server is Down. Skipping to HAUS.
+goto HAUSSeed
 :ServerUpESPT
 echo.Allied Faction has %alliedcountESPT% players
 echo.Axis Faction has %axiscountESPT% players
 for /f "usebackq delims=," %%i in (`curl -s -X GET %RCON_URLESPT% ^| %JQ_PATH% -r ".result.player_count"`) do set countESPT=%%i
 echo.Player Count %countESPT%
 If %countESPT% gtr %SEEDED_ESPT% (
-goto PathHOT
+goto HAUSSEED
 )
 
 if %alliedcountESPT% leq %axiscountESPT% (
