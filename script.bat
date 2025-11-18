@@ -147,61 +147,61 @@ if %countESPT% gtr %SEEDED_ESPT% (
 altf4.exe
 echo Waiting for HLL to Close.
 timeout /t 60 >nul
-:HOTSEED
-echo Server is seeded. Onto Outpost
+:HAUSSEED
+echo Server is seeded. Onto Haus
 echo Launching Seed...
 echo.
 echo Checking Player counts ..
 
-for /f "usebackq delims=," %%i in (`curl -s -X GET %RCON_URLHOT% ^| %JQ_PATH% -r ".result.player_count_by_team.allied"`) do set alliedcountHOT=%%i
-for /f "usebackq delims=," %%i in (`curl -s -X GET %RCON_URLHOT% ^| %JQ_PATH% -r ".result.player_count_by_team.axis"`) do set axiscountHOT=%%i
+for /f "usebackq delims=," %%i in (`curl -s -X GET %RCON_URLHAUS% ^| %JQ_PATH% -r ".result.player_count_by_team.allied"`) do set alliedcountHAUS=%%i
+for /f "usebackq delims=," %%i in (`curl -s -X GET %RCON_URLHAUS% ^| %JQ_PATH% -r ".result.player_count_by_team.axis"`) do set axiscountHAUS=%%i
 
-IF NOT DEFINED axiscountHOT goto ServerDownHOT
-IF DEFINED axiscountHOT goto ServerUpHOT
-:ServerDownHOT
+IF NOT DEFINED axiscountHAUS goto ServerDownHAUS
+IF DEFINED axiscountHAUS goto ServerUpHAUS
+:ServerDownHAUS
 echo Server is Down. Skipping to end.
 goto endloop
-:ServerUpHOT
-echo.Allied Faction has %alliedcountHOT% players
-echo.Axis Faction has %axiscountHOT% players
-for /f "usebackq delims=," %%i in (`curl -s -X GET %RCON_URLHOT% ^| %JQ_PATH% -r ".result.player_count"`) do set countHOT=%%i
-echo.Player Count %countHOT%
-If %countHOT% gtr %SEEDED_HOT% (
+:ServerUpHAUS
+echo.Allied Faction has %alliedcountHAUS% players
+echo.Axis Faction has %axiscountHAUS% players
+for /f "usebackq delims=," %%i in (`curl -s -X GET %RCON_URLHAUS% ^| %JQ_PATH% -r ".result.player_count"`) do set countHAUS=%%i
+echo.Player Count %countHAUS%
+If %countHAUS% gtr %SEEDED_HAUS% (
 goto endloop
 )
 
-If %alliedcountHOT% leq %axiscountHOT% (
+If %alliedcountHAUS% leq %axiscountHAUS% (
 echo Launching as Allies. Time to Launch 4.5 Minutes.
-SpawnSL.exe Allied %SERVER_NAMEHOT%
+SpawnSL.exe Allied %SERVER_NAMEHAUS%
 timeout /t 10 >nul
-goto HOTloop
+goto HAUSloop
 ) else (
 echo Launching as Axis. Time to Launch 4.5 Minutes.
-SpawnSL.exe Axis %SERVER_NAMEHOT%
+SpawnSL.exe Axis %SERVER_NAMEHAUS%
 timeout /t 10 >nul
 
-goto HOTloop
+goto HAUSloop
 )
 
 
 
-:HOTloop
+:HAUSloop
 
-for /f "usebackq delims=," %%i in (`curl -s -X GET %RCON_URLHOT% ^| %JQ_PATH% -r ".result.player_count"`) do set countHOT=%%i
-for /f "usebackq delims=," %%i in (`curl -s -X GET %RCON_URLHOT% ^| %JQ_PATH% -r ".result.time_remaining"`) do set timeHOT=%%i
-for /f "tokens=1,2 delims=." %%a  in ("%timeHOT%") do (set timeHOT=%%a)
-for /f "usebackq delims=," %%i in (`curl -s -X GET %RCON_URLHOT% ^| %JQ_PATH% -r ".result.player_count_by_team.allied"`) do set alliedcountHOT=%%i
-for /f "usebackq delims=," %%i in (`curl -s -X GET %RCON_URLHOT% ^| %JQ_PATH% -r ".result.player_count_by_team.axis"`) do set axiscountHOT=%%i
+for /f "usebackq delims=," %%i in (`curl -s -X GET %RCON_URLHAUS% ^| %JQ_PATH% -r ".result.player_count"`) do set countHAUS=%%i
+for /f "usebackq delims=," %%i in (`curl -s -X GET %RCON_URLHAUS% ^| %JQ_PATH% -r ".result.time_remaining"`) do set timeHAUS=%%i
+for /f "tokens=1,2 delims=." %%a  in ("%timeHAUS%") do (set timeHAUS=%%a)
+for /f "usebackq delims=," %%i in (`curl -s -X GET %RCON_URLHAUS% ^| %JQ_PATH% -r ".result.player_count_by_team.allied"`) do set alliedcountHAUS=%%i
+for /f "usebackq delims=," %%i in (`curl -s -X GET %RCON_URLHAUS% ^| %JQ_PATH% -r ".result.player_count_by_team.axis"`) do set axiscountHAUS=%%i
 
-if %countHOT% gtr %SEEDED_HOT% (
-    echo Player count is greater than %SEEDED_HOT%.
+if %countHAUS% gtr %SEEDED_HAUS% (
+    echo Player count is greater than %SEEDED_HAUS%.
     goto endloop
 ) else (
-    echo Player count is %countHOT%. Waiting 30 seconds...
-	echo Timeleft: %timeHOT%
-	if %timeHOT% geq 5280 (
+    echo Player count is %countHAUS%. Waiting 30 seconds...
+	echo Timeleft: %timeHAUS%
+	if %timeHAUS% geq 5280 (
 	echo New Map.
-		if %alliedcountHOT% leq %axiscountHOT% (
+		if %alliedcountHAUS% leq %axiscountHAUS% (
 		echo Spawning
 		ReSpawnSL.exe Allied
 		) else (
@@ -209,10 +209,10 @@ if %countHOT% gtr %SEEDED_HOT% (
 		ReSpawnSL.exe Axis
 		)
 	timeout /t 120 >nul
-	goto PATHloop
+	goto HAUSloop
 	) else (
     timeout /t 30 >nul
-    goto PATHloop
+    goto HAUSloop
 )
 )
 
