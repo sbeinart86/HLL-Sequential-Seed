@@ -9,10 +9,11 @@ SEEDED_ESPT=75
 SEEDED_PATH=75
 
 
-RCON_URLESPT=https://gw-stats.hlladmin.com/api/get_public_info
+RCON_URLESPT=https://gw-score.espritdecorpsgaming.org/api/get_public_info
 RCON_URLPATH=http://69.48.207.90:8010/api/get_public_info
 
 
 
 SEVER_NAMEESPT="Garrisons & Whiskey"
 SERVER_NAMEPATH="Pathfinders | Chicago"
+
